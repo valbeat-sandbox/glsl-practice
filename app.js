@@ -81,6 +81,8 @@
         // プログラムオブジェクトから unioform location を取得しストライドを設定する
         scenePrg.uniLocation[0] = gl.getUniformLocation(scenePrg.program, 'mouse');
         scenePrg.uniType[0]     = 'uniform2fv';
+        scenePrg.uniLocation[1] = gl.getUniformLocation(scenePrg.program, 'resolution');
+        scenePrg.uniType[1]     = 'uniform2fv';
         // 頂点座標を定義する
         let position = [
              0.0,  0.0,  0.0,    // 1 つ目の頂点の X, Y, Z
@@ -129,6 +131,8 @@
 
             // uniform 変数をリアルタイムにシェーダにpushする
             gl[scenePrg.uniType[0]](scenePrg.uniLocation[0],mouse);
+            let resolution = [canvas.width,canvas.height];
+            gl[scenePrg.uniType[1]](scenePrg.uniLocation[1],resolution);
 
             // VBO 及び IBO を有効化する
             setAttribute(VBO, scenePrg.attLocation, scenePrg.attStride, IBO);
