@@ -83,6 +83,8 @@
         scenePrg.uniType[0]     = 'uniform2fv';
         scenePrg.uniLocation[1] = gl.getUniformLocation(scenePrg.program, 'resolution');
         scenePrg.uniType[1]     = 'uniform2fv';
+        scenePrg.uniLocation[2] = gl.getUniformLocation(scenePrg.program, 'time');
+        scenePrg.uniType[2]     = 'uniform1f';
         // 頂点座標を定義する
         let position = [
              1.0,  1.0,  0.0,
@@ -131,7 +133,7 @@
             gl[scenePrg.uniType[0]](scenePrg.uniLocation[0],mouse);
             let resolution = [canvas.width,canvas.height];
             gl[scenePrg.uniType[1]](scenePrg.uniLocation[1],resolution);
-
+            gl[scenePrg.uniType[2]](scenePrg.uniLocation[2],nowTime);
             // VBO 及び IBO を有効化する
             setAttribute(VBO, scenePrg.attLocation, scenePrg.attStride, IBO);
             // 事前に設定済みの色でクリアする
