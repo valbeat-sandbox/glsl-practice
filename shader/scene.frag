@@ -9,5 +9,5 @@ uniform sampler2D backbuffer;
 void main(){
     vec2 p = (gl_FragCoord.xy * 2.0 - resolution) / resolution;
     // シェーダから出力する色（RGBA を 0.0 ～ 1.0 で出力）
-    gl_FragColor = vec4(p.x,p.y,0.0,1.0);
+    gl_FragColor = vec4(vec3(length(p)),1.0);
 }
