@@ -13,8 +13,12 @@ float orb(vec2 position, vec2 offset) {
 
 // フラグメントシェーダプログラムのエントリポイントとなる関数（名前は必ず main とする）
 void main(){
-    vec2 position = (gl_FragCoord.xy * 2.0 - resolution) / resolution;
-    float light1 = orb(position, vec2(-0.5,0.0));
-    float light2 = orb(position, vec2(0.5,0.0));
-    gl_FragColor = vec4(vec3(light1 + light2), 1.0);
+    vec2 p = (gl_FragCoord.xy * 2.0 - resolution) / resolution;
+    float light = 0.0;
+    for(int i = 1; i <= 20; ++i){
+        float f = float(i) * 0.25;
+        vec2 offset = vec2(cos(time * f), sin(time * f)) * 0.75;
+        light += orb(p, offset);
+    }
+    gl_FragColor = vec4(vec3(light), 1.0);
 }
