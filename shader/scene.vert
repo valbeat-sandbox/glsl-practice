@@ -12,7 +12,7 @@ void main(){
     vColor = color;
     float f = length(mouse);
     // 頂点シェーダから出力する頂点の座標
-    gl_Position = vec4(position * f, 1.0);
+    gl_Position = vec4(position, 1.0);
     // 頂点の大きさは頂点シェーダで設定する
     gl_PointSize = 20.0;
 }

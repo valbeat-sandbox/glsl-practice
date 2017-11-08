@@ -5,11 +5,16 @@ uniform float time;
 // previous scene texture
 uniform sampler2D backbuffer;
 
+float orb(vec2 position, vec2 offset) {
+    vec2 q = position - offset;
+    float len = length(q);
+    return 0.02/len;
+}
+
 // フラグメントシェーダプログラムのエントリポイントとなる関数（名前は必ず main とする）
 void main(){
-    vec2 p = (gl_FragCoord.xy * 2.0 - resolution) / resolution;
-    float len = length(p);
-    float light = 0.1 / len;
-    // シェーダから出力する色（RGBA を 0.0 ～ 1.0 で出力）
-    gl_FragColor = vec4(vec3(light),1.0);
+    vec2 position = (gl_FragCoord.xy * 2.0 - resolution) / resolution;
+    float light1 = orb(position, vec2(-0.5,0.0));
+    float light2 = orb(position, vec2(0.5,0.0));
+    gl_FragColor = vec4(vec3(light1 + light2), 1.0);
 }
