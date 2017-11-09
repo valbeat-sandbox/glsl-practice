@@ -89,7 +89,7 @@
 
         let a = 0.5 * Math.PI;
         let s = 0.5;
-        let point = 3;
+        let point = 4;
         let position = [];
         for(let i = 0; i <= point; i++) {
             // x,y,zの順にpush
@@ -104,6 +104,7 @@
          // 頂点をどのように結ぶかをインデックスで指定する
         let index = [
             0, 1, 2,
+            0, 2, 3,
         ];
         // インデックス配列から IBO（Index Buffer Object）を生成しておく
         let IBO = createIbo(index);
