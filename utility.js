@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * XHR でシェーダのソースコードを外部ファイルから取得しコールバックを呼ぶ
  * @param {string} vsPath - 頂点シェーダの記述されたファイルのパス
@@ -27,4 +29,36 @@ function loadShaderSource(vsPath, fsPath, callback){
         };
         xml.send();
     }
+}
+
+function addVersion(url) {
+    if(url.match(/\?v=/)) {
+        return url;
+    }
+    const arr = url.split('#');
+    let hash = '';
+    if (arr.length > 1) {
+        url = arr[0];
+        hash = arr[1];
+    }
+    const paramStr = url.split('?').shift();
+    const params = paramStr.split('&');
+    for (let param of params) {
+        const keyValue = param.split('=');
+        const key = keyValue[0];
+        let value = keyValue[1];
+        if (key === 'v') {
+            value = createVersion();
+        }
+        url += url.indexOf('?') < 0 ? '?' : '&';
+        url += key + '=' + value;
+    }
+    if (hash) {
+        url += '#' + hash;
+    }
+    return url;
+}
+
+function createVersion() {
+    return parseInt(new Date() / 1000);
 }
