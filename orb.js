@@ -47,8 +47,8 @@
         }, false);
         // 外部ファイルのシェーダのソースを取得しプログラムオブジェクトを生成
         loadShaderSource(
-            './shader/scene.vert',
-            './shader/scene.frag',
+            './shader/orb.vert',
+            './shader/orb.frag',
             (shader) => {
                 // shader.vs に頂点シェーダのソースコードが、
                 // shader.fs にフラグメントシェーダのソースコードが入っている
