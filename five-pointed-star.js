@@ -89,7 +89,7 @@
 
         let a = 0.5 * Math.PI;
         let s = 0.5;
-        let point = 4;
+        let point = 5;
         let position = [];
         for(let i = 0; i <= point; i++) {
             // x,y,zの順にpush
@@ -102,10 +102,12 @@
             createVbo(position),
         ];
          // 頂点をどのように結ぶかをインデックスで指定する
-        let index = [
-            0, 1, 2,
-            0, 2, 3,
-        ];
+        let index = [];
+        for (let i = 0; i <= point - 2; i++) {
+            index.push(0);
+            index.push(i + 1);
+            index.push(i + 2);
+        }
         // インデックス配列から IBO（Index Buffer Object）を生成しておく
         let IBO = createIbo(index);
         // WebGL で canvas をクリアする色の設定
