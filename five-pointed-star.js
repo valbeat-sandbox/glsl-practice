@@ -89,12 +89,14 @@
 
         let a = 0.5 * Math.PI;
         let s = 0.5;
-        let position = [
-            Math.cos((2 * Math.PI / 3) + a) * s,  Math.sin((2 * Math.PI / 3) + a) * s,  0.0,
-            Math.cos((2 * Math.PI * 2 / 3) + a) * s,  Math.sin((2 * Math.PI * 2 / 3) + a) * s,  0.0,
-            Math.cos((2 * Math.PI) + a) * s,  Math.sin((2 * Math.PI) + a) * s,  0.0,
-        ];
-        console.log(position);
+        let point = 3;
+        let position = [];
+        for(let i = 0; i <= point; i++) {
+            // x,y,zの順にpush
+            position.push(Math.cos((2 * Math.PI * i / point) + a) * s);
+            position.push(Math.sin((2 * Math.PI * i / point) + a) * s);
+            position.push(0.0);
+        }
         // 頂点座標の配列から VBO（Vertex Buffer Object）を生成する
         let VBO = [
             createVbo(position),
