@@ -87,8 +87,10 @@
         scenePrg.uniType[2]     = 'uniform1f';
         // 頂点座標を定義する
 
-        let a = 0.5 * Math.PI;
+        let a = Math.PI / 2;
         let s = 0.5;
+        let a1 = Math.PI / 4;
+        let s1 = 0.25;
         let point = 5;
         let position = [];
         for(let i = 0; i <= point; i++) {
@@ -96,18 +98,24 @@
             position.push(Math.cos((2 * Math.PI * i / point) + a) * s);
             position.push(Math.sin((2 * Math.PI * i / point) + a) * s);
             position.push(0.0);
+            // x,y,zの順にpush
+            position.push(Math.cos((2 * Math.PI * i / point) + a1) * s1);
+            position.push(Math.sin((2 * Math.PI * i / point) + a1) * s1);
+            position.push(0.0);
         }
+        console.log(position);
         // 頂点座標の配列から VBO（Vertex Buffer Object）を生成する
         let VBO = [
             createVbo(position),
         ];
          // 頂点をどのように結ぶかをインデックスで指定する
-        let index = [];
-        for (let i = 0; i <= point - 2; i++) {
-            index.push(0);
-            index.push(i + 1);
-            index.push(i + 2);
-        }
+        let index = [
+            1,0,3,
+            3,2,5,
+            5,4,7,
+            7,6,9,
+            9,8,1,
+        ];
         // インデックス配列から IBO（Index Buffer Object）を生成しておく
         let IBO = createIbo(index);
         // WebGL で canvas をクリアする色の設定
